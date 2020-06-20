@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Luger.Functional;
 
 namespace Luger.Examples.ES
 {
@@ -17,7 +18,20 @@ namespace Luger.Examples.ES
      *  State transitions   - Evolves state with events. state -> event -> state
      *  Event handlers      - Subscribes to events. Perform business logic. event -> unit
      */
-    public class Class1
+
+    public struct CustomerId
     {
+        private readonly Some<string> _id;
+
+        public CustomerId(Some<string> repr) => _id = repr;
+    }
+
+    public class SetCustomerNameCommand
+    {
+        public readonly CustomerId CustomerId;
+
+        public readonly Some<string> Name;
+
+        public SetCustomerNameCommand(CustomerId id, Some<string> name) => (CustomerId, Name)=(id, name);
     }
 }
